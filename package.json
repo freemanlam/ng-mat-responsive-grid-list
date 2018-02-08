@@ -7,8 +7,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "yarn packagr && cd dist && yarn pack",
-    "packagr": "ng-packagr -p ./src/lib/ng-package.json",
+    "build:demo": "ng build --prod --output-path ./docs --base-href \"https://freemanlam.github.io/ng-mat-responsive-grid-list/\"",
+    "build:lib": "yarn packagr && cd dist && yarn pack",
+    "packagr": "ng-packagr -p ./src/lib/ng-package.json"
   },
   "dependencies": {
     "@angular/animations": "^5.2.0",

@@ -2,6 +2,9 @@
 
 Angular Material grid list with responsive columns to show data in grid or list.
 
+![Preview](preview.png)
+
+
 ## Dependencies
 - Angular 5.2.4
 - @angular/material
