@@ -1,4 +1,4 @@
-<mat-grid-list [cols]="cols" [rowHeight]="48" gutterSize="10px">
+<mat-grid-list [cols]="cols" [rowHeight]="48" [gutterSize]="gutterSize">
   <mat-grid-tile *ngFor="let item of data">
     <ng-template *ngTemplateOutlet="itemTemplate;context:{item: item}"></ng-template>
   </mat-grid-tile>

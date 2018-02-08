@@ -6,6 +6,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatButtonModule,
+  MatToolbarModule,
 } from '@angular/material';
 
 import { GridListModule } from '../lib/grid-list/grid-list.module';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    MatToolbarModule,
     GridListModule,
   ],
   declarations: [

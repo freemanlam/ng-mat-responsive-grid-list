@@ -4,6 +4,8 @@ Angular Material grid list with responsive columns to show data in grid or list.
 
 ![Preview](preview.png)
 
+## Demo
+[https://freemanlam.github.io/ng-mat-responsive-grid-list/](https://freemanlam.github.io/ng-mat-responsive-grid-list/)
 
 ## Dependencies
 - Angular 5.2.4

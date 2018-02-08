@@ -39,7 +39,9 @@ export class GridListComponent implements OnChanges, OnDestroy {
   @Input() data: any[];
   @Output() colsChange: EventEmitter<number> = new EventEmitter<number>();
 
-  cols: number = 1;
+  @Input() gutterSize: string;
+
+  cols = 1;
 
   mediaChangeSubscription: Subscription;
 
