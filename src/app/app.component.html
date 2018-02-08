@@ -1,0 +1,27 @@
+<h1 class="mat-headline">Angular Material Responsive Grid List</h1>
+
+Cols: {{cols}} <button mat-button type="button" (click)="isGrid = !isGrid">isGrid = {{isGrid}}</button>
+
+<grid-list [grid]="isGrid" [data]="[1,2,3,4,5]" (colsChange)="cols = $event">
+  <ng-template #itemTpl let-item="item">
+    <grid-list-item icon="folder" [name]="item" (onClick)="onItemClick(item)" >
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="doAction('A', item)">
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item (click)="doAction('B', item)" disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voicemail</span>
+        </button>
+        <button mat-menu-item (click)="doAction('C', item)">
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+    </grid-list-item>
+  </ng-template>
+</grid-list>

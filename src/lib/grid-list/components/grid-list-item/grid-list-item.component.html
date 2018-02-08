@@ -1,0 +1,9 @@
+<mat-card mat-ripple>
+  <div fxLayout="row">
+    <div *ngIf="icon" fxFlex="50px" fxLayoutAlign="center center">
+      <mat-icon>{{icon}}</mat-icon>
+    </div>
+    <a (click)="onClick.emit()" fxFlex fxLayoutAlign="start center">{{name}}</a>
+    <ng-content fxFlex="30px"></ng-content>
+  </div>
+</mat-card>

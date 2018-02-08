@@ -1,0 +1,24 @@
+{
+  "name": "ng-mat-responsive-grid-list",
+  "description": "",
+  "peerDependencies": {
+    "@angular/cdk": "5.2.0",
+    "@angular/common": "^5.2.0",
+    "@angular/core": "^5.2.0",
+    "@angular/forms": "^5.2.0",
+    "@angular/flex-layout": "2.0.0-beta.12",
+    "@angular/material": "5.2.0",
+    "rxjs": "^5.5.6"
+  },
+  "dependencies": {
+    "tslib": "^1.7.1"
+  },
+  "version": "0.0.2",
+  "license": "MIT",
+  "private": true,
+  "main": "bundles/ng-mat-responsive-grid-list.umd.js",
+  "module": "esm5/ng-mat-responsive-grid-list.js",
+  "es2015": "esm2015/ng-mat-responsive-grid-list.js",
+  "typings": "ng-mat-responsive-grid-list.d.ts",
+  "metadata": "ng-mat-responsive-grid-list.metadata.json"
+}
