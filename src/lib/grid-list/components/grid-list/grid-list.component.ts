@@ -50,7 +50,7 @@ export class GridListComponent implements OnChanges, OnDestroy {
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.grid) {
+    if (changes.grid.isFirstChange() || changes.grid.hasOwnProperty('previousValue')) {
       if (changes.grid.currentValue) {
         this.mediaChangeSubscription = this.observableMedia
           .subscribe((mediaChange) => {
