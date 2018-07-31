@@ -1,31 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatIconModule,
-  MatMenuModule,
   MatButtonModule,
+  MatGridListModule,
+  MatSlideToggleModule,
   MatToolbarModule,
 } from '@angular/material';
+import { MatGridListResponsiveModule } from '../lib/mat-grid-list-responsive/mat-grid-list-responsive.module';
 
-import { GridListModule } from '../lib/grid-list/grid-list.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatMenuModule,
     MatButtonModule,
+    MatGridListModule,
+    MatSlideToggleModule,
     MatToolbarModule,
-    GridListModule,
+    MatGridListResponsiveModule
   ],
   declarations: [
-    AppComponent,
+    AppComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

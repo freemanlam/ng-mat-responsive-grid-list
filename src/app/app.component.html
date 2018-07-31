@@ -1,34 +1,25 @@
 <mat-toolbar color="primary">
-  <span>Angular Material Responsive Grid List</span>
+  <span>Angular Material Grid List Responsive</span>
   <span class="example-spacer"></span>
   <a mat-button target="_blank" rel="noopener" href="https://github.com/freemanlam/ng-mat-responsive-grid-list">Github</a>
 </mat-toolbar>
 
 <div class="content">
-   Cols: {{cols}}
-  <button mat-button type="button" (click)="isGrid = !isGrid">isGrid = {{isGrid}}</button>
+  <p class="mat-body">Cols: {{cols}}</p>
 
-  <grid-list [grid]="isGrid" [data]="[1,2,3,4,5]" (colsChange)="cols = $event" [gutterSize]="'8px'">
-    <ng-template #itemTpl let-item="item">
-      <grid-list-item icon="folder" [name]="item" (onClick)="onItemClick(item)">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" xPosition="before" overlapTrigger="false">
-          <button mat-menu-item (click)="doAction('A', item)">
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
-          </button>
-          <button mat-menu-item (click)="doAction('B', item)" disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voicemail</span>
-          </button>
-          <button mat-menu-item (click)="doAction('C', item)">
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
-          </button>
-        </mat-menu>
-      </grid-list-item>
-    </ng-template>
-  </grid-list>
+  <mat-slide-toggle [checked]="responsive"
+    (change)="responsive = !responsive">
+    Responsive
+  </mat-slide-toggle>
+
+  <mat-grid-list 
+    [responsive]="responsive"
+    (responsiveColsChange)="cols = $event">
+    <mat-grid-tile style="background:red">1</mat-grid-tile>
+    <mat-grid-tile style="background: orange">2</mat-grid-tile>
+    <mat-grid-tile style="background: yellow">3</mat-grid-tile>
+    <mat-grid-tile style="background: green">4</mat-grid-tile>
+    <mat-grid-tile style="background: cyan">5</mat-grid-tile>
+    <mat-grid-tile style="background: blue">6</mat-grid-tile>
+  </mat-grid-list>
 </div>

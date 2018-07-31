@@ -8,9 +8,8 @@ Angular Material grid list with responsive columns to show data in grid or list.
 [https://freemanlam.github.io/ng-mat-responsive-grid-list/](https://freemanlam.github.io/ng-mat-responsive-grid-list/)
 
 ## Dependencies
-- Angular 5.2.4
+- Angular 6.1
 - @angular/material
-- @angular/flex-layout
 
 ## Demo
 ```yarn start```
@@ -18,4 +17,4 @@ Angular Material grid list with responsive columns to show data in grid or list.
 ## Build and Use
 This package is not in npm registry.
 
-Run ```yarn build``` then ```yarn add {relative-path}/ng-mat-responsive-grid-list/dist/ng-mat-responsive-grid-list-v0.0.2.tgz``` in your project.
+Run ```yarn build``` then ```yarn add {relative-path}/ng-mat-responsive-grid-list/dist/ng-mat-responsive-grid-list-v0.0.4.tgz``` in your project.
