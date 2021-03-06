@@ -3,40 +3,100 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-mat-responsive-grid-list": {
-      "root": "",
-      "sourceRoot": "src",
+    "mat-responsive-grid-list": {
+      "projectType": "library",
+      "root": "projects/mat-responsive-grid-list",
+      "sourceRoot": "projects/mat-responsive-grid-list/src",
+      "prefix": "",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/mat-responsive-grid-list/tsconfig.lib.json",
+            "project": "projects/mat-responsive-grid-list/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mat-responsive-grid-list/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mat-responsive-grid-list/src/test.ts",
+            "tsConfig": "projects/mat-responsive-grid-list/tsconfig.spec.json",
+            "karmaConfig": "projects/mat-responsive-grid-list/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mat-responsive-grid-list/tsconfig.lib.json",
+              "projects/mat-responsive-grid-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "demo-app": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/demo-app",
+      "sourceRoot": "projects/demo-app/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
-            "assets": [],
+            "outputPath": "docs",
+            "index": "projects/demo-app/src/index.html",
+            "main": "projects/demo-app/src/main.ts",
+            "polyfills": "projects/demo-app/src/polyfills.ts",
+            "tsConfig": "projects/demo-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/demo-app/src/assets"
+            ],
             "styles": [
-              "src/styles.scss"
+              "projects/demo-app/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo-app/src/environments/environment.ts",
+                  "with": "projects/demo-app/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
+              "budgets": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -45,45 +105,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-mat-responsive-grid-list:build"
+            "browserTarget": "demo-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-mat-responsive-grid-list:build:production"
+              "browserTarget": "demo-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-mat-responsive-grid-list:build"
+            "browserTarget": "demo-app:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json"
+              "projects/demo-app/tsconfig.app.json"
             ],
-            "exclude": []
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
-    },
-    "ng-mat-responsive-grid-list-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
-      "projectType": "application"
     }
   },
-  "defaultProject": "ng-mat-responsive-grid-list",
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "scss"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
-    }
-  }
+  "defaultProject": "mat-responsive-grid-list"
 }

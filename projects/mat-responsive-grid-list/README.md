@@ -1,4 +1,4 @@
-# ng-mat-responsive-grid-list
+# mat-responsive-grid-list
 
 Angular Material grid list with responsive columns to show data in grid or list.
 

@@ -1,21 +1,27 @@
 <mat-toolbar color="primary">
   <span>Angular Material Grid List Responsive</span>
   <span class="example-spacer"></span>
-  <a mat-button target="_blank" rel="noopener" href="https://github.com/freemanlam/ng-mat-responsive-grid-list">Github</a>
+  <a
+    mat-button
+    target="_blank"
+    rel="noopener"
+    href="https://github.com/freemanlam/ng-mat-responsive-grid-list"
+    >Github</a
+  >
 </mat-toolbar>
 
 <div class="content">
-  <p class="mat-body">Cols: {{cols}}</p>
+  <p class="mat-body">Cols: {{ cols }}</p>
 
-  <mat-slide-toggle [checked]="responsive"
-    (change)="responsive = !responsive">
+  <mat-slide-toggle [checked]="responsive" (change)="responsive = !responsive">
     Responsive
   </mat-slide-toggle>
 
-  <mat-grid-list 
+  <mat-grid-list
     [responsive]="responsive"
-    (responsiveColsChange)="cols = $event">
-    <mat-grid-tile style="background:red">1</mat-grid-tile>
+    (responsiveColsChange)="setCols($event)"
+  >
+    <mat-grid-tile style="background: red">1</mat-grid-tile>
     <mat-grid-tile style="background: orange">2</mat-grid-tile>
     <mat-grid-tile style="background: yellow">3</mat-grid-tile>
     <mat-grid-tile style="background: green">4</mat-grid-tile>

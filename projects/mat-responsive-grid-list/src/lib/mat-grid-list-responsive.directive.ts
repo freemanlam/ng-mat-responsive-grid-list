@@ -7,12 +7,12 @@ import {
   Input,
   Output,
   EventEmitter,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { Observable, BehaviorSubject, Subscription, merge, of } from 'rxjs';
 import { filter, switchMap, map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatGridList } from '@angular/material';
+import { MatGridList } from '@angular/material/grid-list';
 
 function calCols(matchedBreakpoint: MatchedBreakpoint): number {
   switch (matchedBreakpoint) {
@@ -35,18 +35,19 @@ enum MatchedBreakpoint {
   Large,
   Medium,
   Small,
-  XSmall
+  XSmall,
 }
 
 @Directive({
   selector: 'mat-grid-list[responsive]',
-  exportAs: 'matGridListResponsive'
+  exportAs: 'matGridListResponsive',
 })
 export class MatGridListResponsive implements OnInit, OnChanges, OnDestroy {
-  @Input('responsive') responsive = false;
-  private responsive$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.responsive);
+  @Input() responsive = false;
+  private responsive$ = new BehaviorSubject(this.responsive);
 
-  @Output() responsiveColsChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output()
+  responsiveColsChange = new EventEmitter<number>();
 
   private breakPointObservable: Observable<MatchedBreakpoint>;
   private breakPointObserverSubscription = Subscription.EMPTY;
@@ -57,12 +58,14 @@ export class MatGridListResponsive implements OnInit, OnChanges, OnDestroy {
   ) {
     this.matGridList.cols = 1;
 
-    const buildObservable = (alias: MatchedBreakpoint, breakPoint: string): Observable<MatchedBreakpoint> =>
-      this.breakpointObserver.observe(breakPoint)
-        .pipe(
-          filter(state => state.matches),
-          map(state => alias)
-        );
+    const buildObservable = (
+      alias: MatchedBreakpoint,
+      breakPoint: string
+    ): Observable<MatchedBreakpoint> =>
+      this.breakpointObserver.observe(breakPoint).pipe(
+        filter((state) => state.matches),
+        map(() => alias)
+      );
     this.breakPointObservable = merge(
       buildObservable(MatchedBreakpoint.XLarge, Breakpoints.XLarge),
       buildObservable(MatchedBreakpoint.Large, Breakpoints.Large),
@@ -72,32 +75,32 @@ export class MatGridListResponsive implements OnInit, OnChanges, OnDestroy {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.breakPointObserverSubscription = this.responsive$
       .pipe(
-        switchMap(responsive => responsive ? this.breakPointObservable : of(MatchedBreakpoint.XSmall)),
-        map(matchedBreakpoint => calCols(matchedBreakpoint))
+        switchMap((responsive) =>
+          responsive ? this.breakPointObservable : of(MatchedBreakpoint.XSmall)
+        ),
+        map((matchedBreakpoint) => calCols(matchedBreakpoint))
       )
-      .subscribe(cols => this.setCols(cols));
+      .subscribe((cols) => this.setCols(cols));
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.responsive) {
       this.responsive$.next(changes.responsive.currentValue);
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.breakPointObserverSubscription) {
       this.breakPointObserverSubscription.unsubscribe();
-      this.breakPointObserverSubscription = undefined;
+      this.breakPointObserverSubscription = Subscription.EMPTY;
     }
   }
 
-  private setCols(cols: number) {
+  private setCols(cols: number): void {
     this.responsiveColsChange.emit(cols);
     this.matGridList.cols = cols;
   }
-
 }
-
